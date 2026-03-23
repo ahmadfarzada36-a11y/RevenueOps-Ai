@@ -1,0 +1,9 @@
+#! backend-C:\Users\General Manager\Desktop\revenueops-ai-persistentVolumeClaim.yaml
+# Generated code, do not edit
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: backend-c--users-general-manager-desktop-revenueops-ai
+    namespace: revenueops-ai
+spec:
+    storageClassName: "hostpath" # see docker/desktop-storage-provisioner

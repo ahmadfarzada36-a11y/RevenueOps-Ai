@@ -1,0 +1,8 @@
+#! 0-revenueops-ai-namespace.yaml
+# Generated code, do not edit
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: revenueops-ai
+    labels:
+        com.docker.compose.project: revenueops-ai

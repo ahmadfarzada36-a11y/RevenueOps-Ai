@@ -1,0 +1,39 @@
+#! frontend-deployment.yaml
+# Generated code, do not edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: frontend
+    namespace: revenueops-ai
+    labels:
+        com.docker.compose.project: revenueops-ai
+        com.docker.compose.service: frontend
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            com.docker.compose.project: revenueops-ai
+            com.docker.compose.service: frontend
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                com.docker.compose.project: revenueops-ai
+                com.docker.compose.service: frontend
+                com.docker.compose.network.default: "true"
+        spec:
+            containers:
+                - name: revenueops-frontend
+                  image: revenueops-ai-frontend
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                    - name: frontend-5173
+                      containerPort: 5173
+                  volumeMounts:
+                    - name: usr-src-app
+                      mountPath: /usr/src/app
+            volumes:
+                - name: usr-src-app
+                  hostPath:
+                    path: C:\Users\General Manager\Desktop\revenueops-ai\frontend

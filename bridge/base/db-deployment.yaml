@@ -1,0 +1,46 @@
+#! db-deployment.yaml
+# Generated code, do not edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: db
+    namespace: revenueops-ai
+    labels:
+        com.docker.compose.project: revenueops-ai
+        com.docker.compose.service: db
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            com.docker.compose.project: revenueops-ai
+            com.docker.compose.service: db
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                com.docker.compose.project: revenueops-ai
+                com.docker.compose.service: db
+                com.docker.compose.network.default: "true"
+        spec:
+            containers:
+                - name: revenueops-db
+                  image: postgres:16
+                  imagePullPolicy: IfNotPresent
+                  env:
+                    - name: POSTGRES_DB
+                      value: "revenueops"
+                    - name: POSTGRES_PASSWORD
+                      value: "admin123"
+                    - name: POSTGRES_USER
+                      value: "admin"
+                  ports:
+                    - name: db-5432
+                      containerPort: 5432
+                  volumeMounts:
+                    - name: var-lib-postgresql-data
+                      mountPath: /var/lib/postgresql/data
+            volumes:
+                - name: var-lib-postgresql-data
+                  persistentVolumeClaim:
+                    claimName: db-db-data

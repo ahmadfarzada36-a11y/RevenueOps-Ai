@@ -1,0 +1,240 @@
+2026-03-20 22:08:38,993 | INFO | revenueops | RevenueOps AI backend started
+2026-03-20 22:18:24,541 | ERROR | revenueops.errors | 
+REQUEST_ID: 45cd8a84-817c-4d6d-8a5d-00bf81b3b66a
+REQUEST: POST http://localhost:8000/auth/register-company?company_name=Jawan%20Mardan%20Asia&email=ahmadfarzada36%40gmail.com&password=Azizi1122
+CLIENT: 172.18.0.1
+
+ERROR: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+
+TRACEBACK:
+  + Exception Group Traceback (most recent call last):
+  |   File "/usr/local/lib/python3.12/site-packages/starlette/_utils.py", line 81, in collapse_excgroups
+  |     yield
+  |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/local/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/usr/src/app/app/core/error_handler.py", line 22, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+    |     raise exc
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/src/app/app/core/tenant_middleware.py", line 16, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/cors.py", line 95, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/cors.py", line 153, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/usr/local/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 130, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 116, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 670, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 324, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/src/app/app/api/v1/auth.py", line 48, in register_company
+    |     hashed_password=hash_password(password),
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/src/app/app/core/security.py", line 20, in hash_password
+    |     return pwd_context.hash(password)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/context.py", line 2258, in hash
+    |     return record.hash(secret, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 779, in hash
+    |     self.checksum = self._calc_checksum(secret)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/app/app/core/error_handler.py", line 22, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/usr/local/lib/python3.12/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+    raise exc
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/app/app/core/tenant_middleware.py", line 16, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/app/app/api/v1/auth.py", line 48, in register_company
+    hashed_password=hash_password(password),
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/app/app/core/security.py", line 20, in hash_password
+    return pwd_context.hash(password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+
+
+2026-03-21 10:53:55,198 | INFO | revenueops | RevenueOps AI backend started
+2026-03-21 22:48:03,619 | INFO | revenueops | RevenueOps AI backend started
+2026-03-22 04:28:54,680 | INFO | revenueops | RevenueOps AI backend started
+2026-03-22 19:00:56,280 | INFO | revenueops | RevenueOps AI backend started
+2026-03-22 19:29:13,298 | INFO | revenueops | RevenueOps AI backend started
+2026-03-22 19:33:06,349 | INFO | revenueops | RevenueOps AI backend started
+2026-03-22 19:39:01,425 | INFO | revenueops | RevenueOps AI backend started
+2026-03-22 20:17:28,860 | INFO | revenueops | RevenueOps AI backend shutting down
+2026-03-22 20:17:43,339 | INFO | revenueops | RevenueOps AI backend started

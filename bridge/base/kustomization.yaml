@@ -1,0 +1,22 @@
+#! kustomization.yaml
+# Generated code, do not edit
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+    - 0-revenueops-ai-namespace.yaml
+    - backend-C:\Users\General Manager\Desktop\revenueops-ai-persistentVolumeClaim.yaml
+    - backend-deployment.yaml
+    - backend-expose.yaml
+    - backend-service.yaml
+    - db-db_data-persistentVolumeClaim.yaml
+    - db-deployment.yaml
+    - db-expose.yaml
+    - db-service.yaml
+    - default-network-policy.yaml
+    - frontend-C:\Users\General Manager\Desktop\revenueops-ai\frontend-persistentVolumeClaim.yaml
+    - frontend-deployment.yaml
+    - frontend-expose.yaml
+    - frontend-service.yaml
+    - redis-deployment.yaml
+    - redis-expose.yaml
+    - redis-service.yaml

@@ -1,0 +1,44 @@
+#! backend-deployment.yaml
+# Generated code, do not edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: backend
+    namespace: revenueops-ai
+    labels:
+        com.docker.compose.project: revenueops-ai
+        com.docker.compose.service: backend
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            com.docker.compose.project: revenueops-ai
+            com.docker.compose.service: backend
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                com.docker.compose.project: revenueops-ai
+                com.docker.compose.service: backend
+                com.docker.compose.network.default: "true"
+        spec:
+            containers:
+                - name: revenueops-backend
+                  image: revenueops-ai-backend
+                  imagePullPolicy: IfNotPresent
+                  env:
+                    - name: DATABASE_URL
+                      value: "postgresql+asyncpg://admin:admin123@db:5432/revenueops"
+                    - name: OPENAI_API_KEY
+                      value: "your_openai_api_key_here"
+                  ports:
+                    - name: backend-8000
+                      containerPort: 8000
+                  volumeMounts:
+                    - name: usr-src-app
+                      mountPath: /usr/src/app
+            volumes:
+                - name: usr-src-app
+                  hostPath:
+                    path: C:\Users\General Manager\Desktop\revenueops-ai
